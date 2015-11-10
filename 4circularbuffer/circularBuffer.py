@@ -18,7 +18,7 @@ class Node:
 
 
 class dequeArray:
-    """Impelementation of circular buffer in dynamic array"""
+    """Implementation of circular buffer in dynamic array"""
 
     def __init__(self, inlist=[]):
         self._totalElements = len(inlist)
@@ -37,7 +37,7 @@ class dequeArray:
             except IndexError:
                 self._allocateBlock[i] = Node(inlist[item], inlist[0])
                 i += 1
-        #self._tail = self._allocateBlock[self._totalElements]
+        # self._tail = self._allocateBlock[self._totalElements]
 
     def __len__(self):
         return self._totalElements
@@ -75,6 +75,7 @@ class dequeArray:
         self._allocateBlock[self._startIndex] = Node(item, None)
         self._allocateBlock[self._startIndex]._next = self._allocateBlock[self._startIndex + 1]
         self._allocateBlock[(self._startIndex + self._totalElements) - 1]._next = self._allocateBlock[self._startIndex]
+        self._totalElements += 1
 
     def removeFirst(self):
         item = self._allocateBlock[self._startIndex]
@@ -136,7 +137,6 @@ class dequeArray:
             if i != (self._totalElements-1):
                 string += ", "
         return string + "."
-
 
     def _resizeArray(self):
         newCapacity = 2 * self._capacity
